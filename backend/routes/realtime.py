@@ -7,7 +7,11 @@ import time
 from fastapi import APIRouter, Query, WebSocket, WebSocketDisconnect
 
 from backend.data_loader import get_trade_flows
-from backend.services.realtime import fetch_live_air_traffic, fetch_live_company_quotes
+from backend.services.realtime import (
+    fetch_live_air_traffic,
+    fetch_live_bitcoin,
+    fetch_live_company_quotes,
+)
 
 router = APIRouter(prefix="/api/v1/live", tags=["realtime"])
 
@@ -16,6 +20,12 @@ router = APIRouter(prefix="/api/v1/live", tags=["realtime"])
 async def live_companies() -> dict[str, object]:
     rows = await fetch_live_company_quotes()
     return {"as_of_epoch": int(time.time()), "count": len(rows), "items": rows}
+
+
+@router.get("/bitcoin")
+async def live_bitcoin() -> dict[str, object]:
+    btc = await fetch_live_bitcoin()
+    return {"as_of_epoch": int(time.time()), "item": btc}
 
 
 @router.get("/aircraft")
@@ -57,9 +67,10 @@ async def live_ws(websocket: WebSocket):
     await websocket.accept()
     try:
         while True:
-            companies, flights = await asyncio.gather(
+            companies, flights, bitcoin = await asyncio.gather(
                 fetch_live_company_quotes(),
                 fetch_live_air_traffic(limit=50),
+                fetch_live_bitcoin(),
             )
             flows = await live_value_flows(limit=30)
             await websocket.send_json(
@@ -67,6 +78,7 @@ async def live_ws(websocket: WebSocket):
                     "as_of_epoch": int(time.time()),
                     "companies": companies,
                     "aircraft": flights,
+                    "bitcoin": bitcoin,
                     "flows": flows,
                 }
             )
