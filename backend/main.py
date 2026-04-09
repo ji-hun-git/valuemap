@@ -5,8 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from backend.routes.ai import router as ai_router
-from backend.routes.realtime import router as realtime_router
 from backend.routes.trade_flows import router as trade_flows_router
 from backend.routes.wealth_nodes import router as companies_router
 from backend.safety import RateLimitMiddleware, SecurityHeadersMiddleware
@@ -28,8 +26,6 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 app.include_router(companies_router)
 app.include_router(trade_flows_router)
-app.include_router(realtime_router)
-app.include_router(ai_router)
 app.mount("/static", StaticFiles(directory=FRONTEND_PUBLIC), name="static")
 
 

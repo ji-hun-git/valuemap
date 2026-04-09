@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
 
-from backend.data_loader import get_country_centroids, get_data_sources, get_trade_flows
+from backend.data_loader import get_data_sources, get_trade_flows
 from backend.schemas import TradeFlow
 
 router = APIRouter(prefix="/api/v1/trade-flows", tags=["trade-flows"])
@@ -50,30 +50,6 @@ def trade_corridors() -> list[dict[str, str | int]]:
         {"source_country": src, "target_country": dst, "total_value_usd": value}
         for (src, dst), value in sorted(bucket.items(), key=lambda item: item[1], reverse=True)[:20]
     ]
-
-
-@router.get("/map/arcs")
-def map_arcs(limit: int = Query(default=40, ge=1, le=300)) -> list[dict[str, object]]:
-    centroids = get_country_centroids()
-    flows = sorted(get_trade_flows(), key=lambda x: x.value_usd, reverse=True)[:limit]
-    rows: list[dict[str, object]] = []
-    for flow in flows:
-        src = centroids.get(flow.source_country)
-        dst = centroids.get(flow.target_country)
-        if not src or not dst:
-            continue
-        rows.append(
-            {
-                "id": flow.id,
-                "commodity": flow.commodity,
-                "value_usd": flow.value_usd,
-                "source_country": flow.source_country,
-                "target_country": flow.target_country,
-                "source": src,
-                "target": dst,
-            }
-        )
-    return rows
 
 
 @router.get("/sources")

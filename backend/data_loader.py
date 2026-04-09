@@ -38,10 +38,3 @@ def get_data_sources() -> dict[str, list[dict[str, str]]]:
     with (PUBLIC_DATA_DIR / "data_sources.json").open("r", encoding="utf-8") as file:
         payload = json.load(file)
     return payload
-
-
-@lru_cache
-def get_country_centroids() -> dict[str, dict[str, float]]:
-    with (PUBLIC_DATA_DIR / "country_centroids.json").open("r", encoding="utf-8") as file:
-        payload = json.load(file)
-    return payload["centroids"]
