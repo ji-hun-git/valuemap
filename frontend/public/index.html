@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas of Value — Live Global Wealth Globe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.120/Build/Cesium/Widgets/widgets.css" />
+    <link rel="stylesheet" href="/static/site.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="left-panel glass">
+        <h1>🌍 Atlas of Value</h1>
+        <p class="subtitle">Realtime company + flow + flight intelligence.</p>
+
+        <div class="filter-group">
+          <label>Search company</label>
+          <input id="q" type="text" placeholder="Name or symbol" />
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label>Sector</label>
+            <select id="sector"><option value="">All</option></select>
+          </div>
+          <div class="filter-group">
+            <label>Country</label>
+            <select id="country"><option value="">All</option></select>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Minimum market cap (USD)</label>
+          <input id="min_market_cap" type="number" value="0" step="1000000000" />
+        </div>
+
+        <button id="apply-btn">Apply Filters</button>
+      </aside>
+
+      <main class="main-panel">
+        <section class="glass map-section">
+          <div class="section-header">
+            <h2>Earth Mode</h2>
+            <small id="live-stamp">Waiting for live feed…</small>
+          </div>
+          <div id="globe"></div>
+          <div class="badge-row">
+            <span id="aoe-badge" class="badge">AOE Index: --</span>
+            <span class="badge">Yellow dots = live aircraft</span>
+            <span class="badge">Cyan pillars = company value</span>
+            <span class="badge">Magenta arcs = value flows</span>
+          </div>
+        </section>
+
+        <section class="kpis" id="kpis"></section>
+
+        <section class="glass two-col">
+          <div>
+            <h2>Country Context (Public Data)</h2>
+            <div class="table-wrap">
+              <table id="country-table">
+                <thead>
+                  <tr><th>Country</th><th>GDP (T USD)</th><th>Population (M)</th><th>HDI</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h2>AI Copilot</h2>
+            <div id="chat-log" class="chat-log"></div>
+            <div class="chat-input-row">
+              <input id="chat-input" placeholder="Ask: largest company / top trade flow / top country" />
+              <button id="chat-send">Ask</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="glass">
+          <div class="section-header">
+            <h2>Realtime Company Directory</h2>
+            <div class="pagination" id="pagination"></div>
+          </div>
+          <div class="table-wrap">
+            <table id="companies-table">
+              <thead>
+                <tr><th>Symbol</th><th>Company</th><th>Sector</th><th>Country</th><th>Employees</th><th>Market Cap</th><th>Revenue</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/cesium@1.120/Build/Cesium/Cesium.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
