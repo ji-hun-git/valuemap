@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "data" / "public"
 
 QUOTE_CACHE: dict[str, object] = {"ts": 0.0, "data": []}
+BTC_CACHE: dict[str, object] = {"ts": 0.0, "data": {}}
 CACHE_SECONDS = 20
 
 
@@ -53,6 +54,54 @@ async def fetch_live_company_quotes() -> list[dict[str, object]]:
     QUOTE_CACHE["ts"] = now
     QUOTE_CACHE["data"] = enriched
     return enriched
+
+
+async def fetch_live_bitcoin() -> dict[str, object]:
+    now = time.time()
+    if now - float(BTC_CACHE["ts"]) < CACHE_SECONDS and BTC_CACHE["data"]:
+        return BTC_CACHE["data"]  # type: ignore[return-value]
+
+    fallback = {
+        "symbol": "BTC",
+        "name": "Bitcoin",
+        "currency": "USD",
+        "price": None,
+        "market_cap": None,
+        "change_percent_24h": None,
+        "high_24h": None,
+        "low_24h": None,
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=6.0) as client:
+            response = await client.get(
+                "https://api.coingecko.com/api/v3/simple/price",
+                params={
+                    "ids": "bitcoin",
+                    "vs_currencies": "usd",
+                    "include_market_cap": "true",
+                    "include_24hr_change": "true",
+                    "include_24hr_high": "true",
+                    "include_24hr_low": "true",
+                },
+            )
+            response.raise_for_status()
+            payload = response.json().get("bitcoin", {})
+    except Exception:
+        payload = {}
+
+    data = {
+        **fallback,
+        "price": payload.get("usd"),
+        "market_cap": payload.get("usd_market_cap"),
+        "change_percent_24h": payload.get("usd_24h_change"),
+        "high_24h": payload.get("usd_24h_high"),
+        "low_24h": payload.get("usd_24h_low"),
+    }
+
+    BTC_CACHE["ts"] = now
+    BTC_CACHE["data"] = data
+    return data
 
 
 async def fetch_live_air_traffic(limit: int = 60) -> list[dict[str, object]]:

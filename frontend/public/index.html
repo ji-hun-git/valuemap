@@ -3,98 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atlas of Value — Global Company Intelligence</title>
+    <title>Atlas SatelliteMap — Live Company Earth</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <link rel="stylesheet" href="/static/site.css" />
   </head>
   <body>
     <div class="app-shell">
-      <aside class="left-panel glass">
-        <h1>🌍 Atlas of Value</h1>
-        <p class="subtitle">Company-level global wealth command center.</p>
-
-        <div class="filter-group">
-          <label>Search company</label>
-          <input id="q" type="text" placeholder="Name or symbol" />
-          <div id="suggestions" class="suggestions"></div>
-        </div>
-
-        <div class="filter-grid">
-          <div class="filter-group">
-            <label>Sector</label>
-            <select id="sector"><option value="">All</option></select>
-          </div>
-          <div class="filter-group">
-            <label>Country</label>
-            <select id="country"><option value="">All</option></select>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <label>Minimum market cap (USD)</label>
-          <input id="min_market_cap" type="number" value="0" step="1000000000" />
-        </div>
-
-        <button id="apply-btn">Apply Filters</button>
-      </aside>
-
       <main class="main-panel">
-        <section class="kpis" id="kpis"></section>
-
-        <section class="glass">
-          <div class="section-header">
-            <h2>Sector Dominance</h2>
-          </div>
-          <div id="sector-chart" class="chart"></div>
-        </section>
-
-        <section class="glass two-col">
+        <section class="hud glass">
           <div>
-            <h2>Country Context (Public Data)</h2>
-            <div class="table-wrap">
-              <table id="country-table">
-                <thead>
-                  <tr>
-                    <th>Country</th>
-                    <th>GDP (T USD)</th>
-                    <th>Population (M)</th>
-                    <th>HDI</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
+            <h1>🛰️ Atlas SatelliteMap</h1>
+            <p>Live stock and Bitcoin data, mapped to real HQ coordinates on Earth.</p>
           </div>
-          <div>
-            <h2>Connected Open Sources</h2>
-            <ul id="sources-list" class="source-list"></ul>
+          <div class="hud-actions">
+            <input id="search" type="text" placeholder="Search company or symbol" />
+            <select id="region-filter">
+              <option value="">All countries</option>
+            </select>
+            <button id="refresh-btn">Refresh Live Data</button>
           </div>
         </section>
 
-        <section class="glass">
-          <div class="section-header">
-            <h2>Company Directory</h2>
-            <div class="pagination" id="pagination"></div>
-          </div>
-          <div class="table-wrap">
-            <table id="companies-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Company</th>
-                  <th>Sector</th>
-                  <th>Country</th>
-                  <th>Employees</th>
-                  <th>Market Cap</th>
-                  <th>Revenue</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
+        <section class="map-wrap glass">
+          <div id="map"></div>
+          <aside class="live-panel">
+            <h2>Market Pulse</h2>
+            <div id="pulse-cards" class="pulse-cards"></div>
+            <h3>Top Movers</h3>
+            <div id="movers" class="movers"></div>
+          </aside>
         </section>
       </main>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="/static/app.js"></script>
   </body>
 </html>

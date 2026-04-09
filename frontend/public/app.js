@@ -1,21 +1,22 @@
 const state = {
-  page: 1,
-  pageSize: 20,
+  companies: [],
+  filtered: [],
+  markers: [],
+  map: null,
 };
 
-function usd(value) {
+function usd(value, digits = 0) {
+  if (value === null || value === undefined) return "—";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    maximumFractionDigits: 0,
+    maximumFractionDigits: digits,
   }).format(value);
 }
 
-function compact(value) {
-  return new Intl.NumberFormat("en-US", {
-    notation: "compact",
-    maximumFractionDigits: 1,
-  }).format(value);
+function pct(value) {
+  if (value === null || value === undefined) return "—";
+  return `${value > 0 ? "+" : ""}${value.toFixed(2)}%`;
 }
 
 async function fetchJson(url) {
@@ -26,195 +27,163 @@ async function fetchJson(url) {
   return response.json();
 }
 
-function buildQuery() {
-  const params = new URLSearchParams({
-    page: String(state.page),
-    page_size: String(state.pageSize),
-    sort_by: "market_cap_usd",
-    sort_dir: "desc",
-    min_market_cap: document.getElementById("min_market_cap").value || "0",
-  });
-
-  const q = document.getElementById("q").value.trim();
-  const sector = document.getElementById("sector").value;
-  const country = document.getElementById("country").value;
-
-  if (q) params.set("q", q);
-  if (sector) params.set("sector", sector);
-  if (country) params.set("country", country);
-
-  return params.toString();
-}
-
-function renderKpis(overview) {
-  const el = document.getElementById("kpis");
-  const cards = [
-    ["Companies", compact(overview.companies)],
-    ["Total Market Cap", usd(overview.total_market_cap_usd)],
-    ["Total Revenue", usd(overview.total_revenue_usd)],
-    ["Total Employees", compact(overview.total_employees)],
-  ];
-
-  el.innerHTML = cards
-    .map(
-      ([label, value]) => `
-      <article class="kpi-card glass">
-        <p>${label}</p>
-        <h3>${value}</h3>
-      </article>
-    `,
-    )
-    .join("");
-}
-
-function renderSectorChart(rows) {
-  const max = Math.max(...rows.map((r) => r.market_cap_usd));
-  const chart = document.getElementById("sector-chart");
-
-  chart.innerHTML = rows
-    .slice(0, 8)
-    .map((row) => {
-      const width = Math.max(2, Math.round((row.market_cap_usd / max) * 100));
-      return `
-        <div class="bar-row">
-          <div class="bar-label">${row.sector}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${width}%"></div></div>
-          <div class="bar-value">${usd(row.market_cap_usd)}</div>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-function renderCompanies(payload) {
-  const tbody = document.querySelector("#companies-table tbody");
-  tbody.innerHTML = payload.items
-    .map(
-      (company) => `
-      <tr>
-        <td>${company.symbol}</td>
-        <td>${company.company}</td>
-        <td>${company.sector}</td>
-        <td>${company.country}</td>
-        <td>${compact(company.employees)}</td>
-        <td>${usd(company.market_cap_usd)}</td>
-        <td>${usd(company.revenue_usd)}</td>
-      </tr>
-    `,
-    )
-    .join("");
-
-  const totalPages = Math.ceil(payload.total / payload.page_size) || 1;
-  const pagination = document.getElementById("pagination");
-  pagination.innerHTML = `
-    <button ${payload.page <= 1 ? "disabled" : ""} id="prev-btn">◀ Prev</button>
-    <span>Page ${payload.page} / ${totalPages}</span>
-    <button ${payload.page >= totalPages ? "disabled" : ""} id="next-btn">Next ▶</button>
+function markerHtml(company) {
+  const change = company.change_percent ?? 0;
+  const color = change >= 0 ? "#42f5b9" : "#ff6f91";
+  return `
+    <div style="width:16px;height:16px;border-radius:999px;background:${color};border:2px solid rgba(255,255,255,.75);box-shadow:0 0 12px ${color};"></div>
   `;
+}
 
-  document.getElementById("prev-btn")?.addEventListener("click", () => {
-    state.page = Math.max(1, state.page - 1);
-    loadCompanies();
-  });
-  document.getElementById("next-btn")?.addEventListener("click", () => {
-    state.page = Math.min(totalPages, state.page + 1);
-    loadCompanies();
+function initMap() {
+  if (state.map) return;
+
+  state.map = L.map("map", {
+    worldCopyJump: true,
+    zoomControl: true,
+  }).setView([26, 8], 2);
+
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "Tiles © Esri",
+    maxZoom: 8,
+  }).addTo(state.map);
+}
+
+function clearMarkers() {
+  state.markers.forEach((marker) => marker.remove());
+  state.markers = [];
+}
+
+function renderMarkers(rows) {
+  clearMarkers();
+
+  rows.forEach((company) => {
+    const icon = L.divIcon({
+      className: "company-dot",
+      html: markerHtml(company),
+      iconSize: [16, 16],
+      iconAnchor: [8, 8],
+    });
+
+    const marker = L.marker([company.lat, company.lon], { icon }).addTo(state.map);
+    marker.bindPopup(`
+      <div>
+        <div class="popup-title">${company.symbol} · ${company.name}</div>
+        <div>${company.city}, ${company.country}</div>
+        <div>Price: ${usd(company.price, 2)}</div>
+        <div class="${(company.change_percent ?? 0) >= 0 ? "up" : "down"}">24h: ${pct(company.change_percent ?? 0)}</div>
+        <div>Market Cap: ${usd(company.market_cap)}</div>
+      </div>
+    `);
+
+    state.markers.push(marker);
   });
 }
 
-function renderCountryContext(rows) {
-  const tbody = document.querySelector("#country-table tbody");
-  tbody.innerHTML = rows
+function renderPulse(companies, bitcoin, asOfEpoch) {
+  const cards = document.getElementById("pulse-cards");
+  const totalCap = companies.reduce((sum, row) => sum + (row.market_cap || 0), 0);
+  const avgMove = companies.reduce((sum, row) => sum + (row.change_percent || 0), 0) / (companies.length || 1);
+  const lastUpdate = new Date(asOfEpoch * 1000).toLocaleTimeString();
+
+  cards.innerHTML = `
+    <article class="card">
+      <div class="label">Tracked Companies</div>
+      <div class="value">${companies.length}</div>
+    </article>
+    <article class="card">
+      <div class="label">Total Market Cap</div>
+      <div class="value">${usd(totalCap)}</div>
+    </article>
+    <article class="card">
+      <div class="label">Avg Stock Change</div>
+      <div class="value ${avgMove >= 0 ? "up" : "down"}">${pct(avgMove)}</div>
+    </article>
+    <article class="card">
+      <div class="label">Bitcoin</div>
+      <div class="value">${usd(bitcoin.price, 2)}</div>
+      <div class="${(bitcoin.change_percent_24h ?? 0) >= 0 ? "up" : "down"}">${pct(bitcoin.change_percent_24h)}</div>
+    </article>
+    <article class="card">
+      <div class="label">Last Refresh</div>
+      <div class="value">${lastUpdate}</div>
+    </article>
+  `;
+}
+
+function renderMovers(rows) {
+  const movers = document.getElementById("movers");
+  const sorted = [...rows]
+    .filter((row) => row.change_percent !== null && row.change_percent !== undefined)
+    .sort((a, b) => Math.abs(b.change_percent) - Math.abs(a.change_percent))
+    .slice(0, 10);
+
+  movers.innerHTML = sorted
     .map(
       (row) => `
-      <tr>
-        <td>${row.country}</td>
-        <td>${row.gdp_usd_trillion}</td>
-        <td>${row.population_millions}</td>
-        <td>${row.hdi}</td>
-      </tr>
+      <div class="mover">
+        <strong>${row.symbol}</strong>
+        <span>${usd(row.price, 2)}</span>
+        <span class="${row.change_percent >= 0 ? "up" : "down"}">${pct(row.change_percent)}</span>
+      </div>
     `,
     )
     .join("");
 }
 
-function renderSources(sources) {
-  const el = document.getElementById("sources-list");
-  const buckets = ["trade_flows"];
-  el.innerHTML = buckets
-    .flatMap((bucket) => sources[bucket].map((source) => `<li><a href="${source.url}" target="_blank">${source.name}</a><span>${source.license}</span></li>`))
-    .join("");
+function populateCountries(rows) {
+  const select = document.getElementById("region-filter");
+  const countries = [...new Set(rows.map((row) => row.country))].sort();
+  select.innerHTML = `<option value="">All countries</option>${countries.map((country) => `<option value="${country}">${country}</option>`).join("")}`;
 }
 
-async function loadSuggestions() {
-  const q = document.getElementById("q").value.trim();
-  const box = document.getElementById("suggestions");
-  if (!q) {
-    box.innerHTML = "";
-    return;
-  }
+function applyFilters() {
+  const search = document.getElementById("search").value.trim().toLowerCase();
+  const country = document.getElementById("region-filter").value;
 
-  const items = await fetchJson(`/api/v1/companies/search/suggestions?q=${encodeURIComponent(q)}`);
-  box.innerHTML = items.map((item) => `<button class="suggestion-item" data-symbol="${item.symbol}">${item.symbol} — ${item.company}</button>`).join("");
-
-  box.querySelectorAll(".suggestion-item").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.getElementById("q").value = button.dataset.symbol;
-      box.innerHTML = "";
-      state.page = 1;
-      loadCompanies();
-    });
+  state.filtered = state.companies.filter((row) => {
+    const searchMatch =
+      !search ||
+      row.symbol.toLowerCase().includes(search) ||
+      row.name.toLowerCase().includes(search);
+    const countryMatch = !country || row.country === country;
+    return searchMatch && countryMatch;
   });
+
+  renderMarkers(state.filtered);
+  renderMovers(state.filtered);
 }
 
-async function loadFilterOptions() {
-  const [sectorAgg, countryAgg] = await Promise.all([
-    fetchJson("/api/v1/companies/analytics/by-sector"),
-    fetchJson("/api/v1/companies/analytics/by-country"),
+async function refreshLiveData() {
+  const [companiesData, bitcoinData] = await Promise.all([
+    fetchJson("/api/v1/live/companies"),
+    fetchJson("/api/v1/live/bitcoin"),
   ]);
 
-  const sectors = sectorAgg.map((row) => row.sector).sort();
-  const countries = countryAgg.map((row) => row.country).sort();
+  state.companies = companiesData.items;
+  state.filtered = companiesData.items;
+  populateCountries(state.companies);
 
-  const sectorSelect = document.getElementById("sector");
-  const countrySelect = document.getElementById("country");
-
-  sectorSelect.innerHTML = `<option value="">All</option>${sectors.map((s) => `<option>${s}</option>`).join("")}`;
-  countrySelect.innerHTML = `<option value="">All</option>${countries.map((c) => `<option>${c}</option>`).join("")}`;
-}
-
-async function loadCompanies() {
-  const query = buildQuery();
-  const payload = await fetchJson(`/api/v1/companies?${query}`);
-  renderCompanies(payload);
+  renderPulse(companiesData.items, bitcoinData.item, companiesData.as_of_epoch);
+  applyFilters();
 }
 
 async function boot() {
-  const [overview, sectors, countryContext, sources] = await Promise.all([
-    fetchJson("/api/v1/companies/analytics/overview"),
-    fetchJson("/api/v1/companies/analytics/by-sector"),
-    fetchJson("/api/v1/companies/country-context"),
-    fetchJson("/api/v1/trade-flows/sources"),
-    loadFilterOptions(),
-  ]);
+  initMap();
+  await refreshLiveData();
 
-  renderKpis(overview);
-  renderSectorChart(sectors);
-  renderCountryContext(countryContext);
-  renderSources({ trade_flows: sources });
-  await loadCompanies();
-
-  document.getElementById("apply-btn").addEventListener("click", () => {
-    state.page = 1;
-    loadCompanies();
+  document.getElementById("search").addEventListener("input", applyFilters);
+  document.getElementById("region-filter").addEventListener("change", applyFilters);
+  document.getElementById("refresh-btn").addEventListener("click", () => {
+    refreshLiveData().catch(console.error);
   });
 
-  document.getElementById("q").addEventListener("input", () => {
-    loadSuggestions().catch(console.error);
-  });
+  setInterval(() => {
+    refreshLiveData().catch(console.error);
+  }, 30000);
 }
 
 boot().catch((error) => {
   console.error(error);
-  document.body.innerHTML = `<pre style="color:#fff">Failed to load Atlas dashboard: ${error.message}</pre>`;
+  document.body.innerHTML = `<pre style="color:#fff">Failed to load satellite map: ${error.message}</pre>`;
 });
