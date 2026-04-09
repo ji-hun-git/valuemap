@@ -1,0 +1,974 @@
+{
+  "meta": {
+    "description": "Scaled trade flow dataset",
+    "flow_year": 2025,
+    "currency": "USD",
+    "records": 120,
+    "sources": [
+      "https://comtradeplus.un.org/",
+      "https://data.worldbank.org/"
+    ]
+  },
+  "flows": [
+    {
+      "id": 1,
+      "commodity": "Cloud Services",
+      "source_country": "Singapore",
+      "target_country": "Canada",
+      "value_usd": 116000000000,
+      "year": 2025
+    },
+    {
+      "id": 2,
+      "commodity": "Pharmaceuticals",
+      "source_country": "India",
+      "target_country": "South Korea",
+      "value_usd": 44000000000,
+      "year": 2025
+    },
+    {
+      "id": 3,
+      "commodity": "Iron Ore",
+      "source_country": "Canada",
+      "target_country": "Germany",
+      "value_usd": 12000000000,
+      "year": 2025
+    },
+    {
+      "id": 4,
+      "commodity": "Semiconductors",
+      "source_country": "United Arab Emirates",
+      "target_country": "South Korea",
+      "value_usd": 72000000000,
+      "year": 2025
+    },
+    {
+      "id": 5,
+      "commodity": "Wheat",
+      "source_country": "United States",
+      "target_country": "Germany",
+      "value_usd": 95000000000,
+      "year": 2025
+    },
+    {
+      "id": 6,
+      "commodity": "Semiconductors",
+      "source_country": "India",
+      "target_country": "France",
+      "value_usd": 42000000000,
+      "year": 2025
+    },
+    {
+      "id": 7,
+      "commodity": "Semiconductors",
+      "source_country": "United Kingdom",
+      "target_country": "France",
+      "value_usd": 114000000000,
+      "year": 2025
+    },
+    {
+      "id": 8,
+      "commodity": "Iron Ore",
+      "source_country": "United Kingdom",
+      "target_country": "United States",
+      "value_usd": 62000000000,
+      "year": 2025
+    },
+    {
+      "id": 9,
+      "commodity": "Semiconductors",
+      "source_country": "Canada",
+      "target_country": "Australia",
+      "value_usd": 147000000000,
+      "year": 2025
+    },
+    {
+      "id": 10,
+      "commodity": "Iron Ore",
+      "source_country": "United Arab Emirates",
+      "target_country": "United Kingdom",
+      "value_usd": 117000000000,
+      "year": 2025
+    },
+    {
+      "id": 11,
+      "commodity": "Cloud Services",
+      "source_country": "Canada",
+      "target_country": "Germany",
+      "value_usd": 21000000000,
+      "year": 2025
+    },
+    {
+      "id": 12,
+      "commodity": "Automobiles",
+      "source_country": "United Kingdom",
+      "target_country": "United Arab Emirates",
+      "value_usd": 95000000000,
+      "year": 2025
+    },
+    {
+      "id": 13,
+      "commodity": "Copper",
+      "source_country": "Canada",
+      "target_country": "India",
+      "value_usd": 73000000000,
+      "year": 2025
+    },
+    {
+      "id": 14,
+      "commodity": "Pharmaceuticals",
+      "source_country": "United States",
+      "target_country": "United Kingdom",
+      "value_usd": 49000000000,
+      "year": 2025
+    },
+    {
+      "id": 15,
+      "commodity": "Crude Oil",
+      "source_country": "Germany",
+      "target_country": "South Korea",
+      "value_usd": 145000000000,
+      "year": 2025
+    },
+    {
+      "id": 16,
+      "commodity": "Copper",
+      "source_country": "Singapore",
+      "target_country": "Canada",
+      "value_usd": 116000000000,
+      "year": 2025
+    },
+    {
+      "id": 17,
+      "commodity": "Copper",
+      "source_country": "United Arab Emirates",
+      "target_country": "Singapore",
+      "value_usd": 127000000000,
+      "year": 2025
+    },
+    {
+      "id": 18,
+      "commodity": "Pharmaceuticals",
+      "source_country": "United States",
+      "target_country": "Singapore",
+      "value_usd": 20000000000,
+      "year": 2025
+    },
+    {
+      "id": 19,
+      "commodity": "Iron Ore",
+      "source_country": "United Kingdom",
+      "target_country": "Germany",
+      "value_usd": 24000000000,
+      "year": 2025
+    },
+    {
+      "id": 20,
+      "commodity": "Wheat",
+      "source_country": "France",
+      "target_country": "Canada",
+      "value_usd": 18000000000,
+      "year": 2025
+    },
+    {
+      "id": 21,
+      "commodity": "LNG",
+      "source_country": "Germany",
+      "target_country": "Singapore",
+      "value_usd": 78000000000,
+      "year": 2025
+    },
+    {
+      "id": 22,
+      "commodity": "Iron Ore",
+      "source_country": "India",
+      "target_country": "France",
+      "value_usd": 46000000000,
+      "year": 2025
+    },
+    {
+      "id": 23,
+      "commodity": "Copper",
+      "source_country": "Germany",
+      "target_country": "Japan",
+      "value_usd": 33000000000,
+      "year": 2025
+    },
+    {
+      "id": 24,
+      "commodity": "Semiconductors",
+      "source_country": "United Kingdom",
+      "target_country": "Singapore",
+      "value_usd": 128000000000,
+      "year": 2025
+    },
+    {
+      "id": 25,
+      "commodity": "Iron Ore",
+      "source_country": "Canada",
+      "target_country": "United Arab Emirates",
+      "value_usd": 148000000000,
+      "year": 2025
+    },
+    {
+      "id": 26,
+      "commodity": "Cloud Services",
+      "source_country": "Australia",
+      "target_country": "United Arab Emirates",
+      "value_usd": 35000000000,
+      "year": 2025
+    },
+    {
+      "id": 27,
+      "commodity": "Automobiles",
+      "source_country": "United States",
+      "target_country": "Japan",
+      "value_usd": 81000000000,
+      "year": 2025
+    },
+    {
+      "id": 28,
+      "commodity": "Automobiles",
+      "source_country": "India",
+      "target_country": "Australia",
+      "value_usd": 136000000000,
+      "year": 2025
+    },
+    {
+      "id": 29,
+      "commodity": "LNG",
+      "source_country": "South Korea",
+      "target_country": "France",
+      "value_usd": 20000000000,
+      "year": 2025
+    },
+    {
+      "id": 30,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Canada",
+      "target_country": "India",
+      "value_usd": 20000000000,
+      "year": 2025
+    },
+    {
+      "id": 31,
+      "commodity": "Iron Ore",
+      "source_country": "Australia",
+      "target_country": "India",
+      "value_usd": 134000000000,
+      "year": 2025
+    },
+    {
+      "id": 32,
+      "commodity": "LNG",
+      "source_country": "United Kingdom",
+      "target_country": "United Arab Emirates",
+      "value_usd": 48000000000,
+      "year": 2025
+    },
+    {
+      "id": 33,
+      "commodity": "Crude Oil",
+      "source_country": "South Korea",
+      "target_country": "United Arab Emirates",
+      "value_usd": 16000000000,
+      "year": 2025
+    },
+    {
+      "id": 34,
+      "commodity": "LNG",
+      "source_country": "Germany",
+      "target_country": "United Kingdom",
+      "value_usd": 79000000000,
+      "year": 2025
+    },
+    {
+      "id": 35,
+      "commodity": "Iron Ore",
+      "source_country": "United Kingdom",
+      "target_country": "South Korea",
+      "value_usd": 59000000000,
+      "year": 2025
+    },
+    {
+      "id": 36,
+      "commodity": "Lithium",
+      "source_country": "Germany",
+      "target_country": "Singapore",
+      "value_usd": 22000000000,
+      "year": 2025
+    },
+    {
+      "id": 37,
+      "commodity": "Lithium",
+      "source_country": "Japan",
+      "target_country": "India",
+      "value_usd": 143000000000,
+      "year": 2025
+    },
+    {
+      "id": 38,
+      "commodity": "Cloud Services",
+      "source_country": "United Kingdom",
+      "target_country": "India",
+      "value_usd": 79000000000,
+      "year": 2025
+    },
+    {
+      "id": 39,
+      "commodity": "LNG",
+      "source_country": "Germany",
+      "target_country": "United States",
+      "value_usd": 130000000000,
+      "year": 2025
+    },
+    {
+      "id": 40,
+      "commodity": "LNG",
+      "source_country": "United Arab Emirates",
+      "target_country": "France",
+      "value_usd": 41000000000,
+      "year": 2025
+    },
+    {
+      "id": 41,
+      "commodity": "Cloud Services",
+      "source_country": "France",
+      "target_country": "United Arab Emirates",
+      "value_usd": 88000000000,
+      "year": 2025
+    },
+    {
+      "id": 42,
+      "commodity": "Semiconductors",
+      "source_country": "United States",
+      "target_country": "United Kingdom",
+      "value_usd": 22000000000,
+      "year": 2025
+    },
+    {
+      "id": 43,
+      "commodity": "Copper",
+      "source_country": "France",
+      "target_country": "United Arab Emirates",
+      "value_usd": 69000000000,
+      "year": 2025
+    },
+    {
+      "id": 44,
+      "commodity": "Pharmaceuticals",
+      "source_country": "United Arab Emirates",
+      "target_country": "South Korea",
+      "value_usd": 9000000000,
+      "year": 2025
+    },
+    {
+      "id": 45,
+      "commodity": "Lithium",
+      "source_country": "France",
+      "target_country": "Germany",
+      "value_usd": 76000000000,
+      "year": 2025
+    },
+    {
+      "id": 46,
+      "commodity": "Lithium",
+      "source_country": "Australia",
+      "target_country": "Japan",
+      "value_usd": 105000000000,
+      "year": 2025
+    },
+    {
+      "id": 47,
+      "commodity": "LNG",
+      "source_country": "Australia",
+      "target_country": "United States",
+      "value_usd": 17000000000,
+      "year": 2025
+    },
+    {
+      "id": 48,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Australia",
+      "target_country": "South Korea",
+      "value_usd": 125000000000,
+      "year": 2025
+    },
+    {
+      "id": 49,
+      "commodity": "Iron Ore",
+      "source_country": "Japan",
+      "target_country": "South Korea",
+      "value_usd": 38000000000,
+      "year": 2025
+    },
+    {
+      "id": 50,
+      "commodity": "Automobiles",
+      "source_country": "India",
+      "target_country": "Canada",
+      "value_usd": 90000000000,
+      "year": 2025
+    },
+    {
+      "id": 51,
+      "commodity": "Wheat",
+      "source_country": "United Kingdom",
+      "target_country": "South Korea",
+      "value_usd": 133000000000,
+      "year": 2025
+    },
+    {
+      "id": 52,
+      "commodity": "Pharmaceuticals",
+      "source_country": "United States",
+      "target_country": "Australia",
+      "value_usd": 63000000000,
+      "year": 2025
+    },
+    {
+      "id": 53,
+      "commodity": "Copper",
+      "source_country": "United States",
+      "target_country": "South Korea",
+      "value_usd": 117000000000,
+      "year": 2025
+    },
+    {
+      "id": 54,
+      "commodity": "Lithium",
+      "source_country": "United Kingdom",
+      "target_country": "United States",
+      "value_usd": 14000000000,
+      "year": 2025
+    },
+    {
+      "id": 55,
+      "commodity": "Copper",
+      "source_country": "South Korea",
+      "target_country": "France",
+      "value_usd": 109000000000,
+      "year": 2025
+    },
+    {
+      "id": 56,
+      "commodity": "Iron Ore",
+      "source_country": "United Kingdom",
+      "target_country": "South Korea",
+      "value_usd": 149000000000,
+      "year": 2025
+    },
+    {
+      "id": 57,
+      "commodity": "Wheat",
+      "source_country": "Japan",
+      "target_country": "United Kingdom",
+      "value_usd": 129000000000,
+      "year": 2025
+    },
+    {
+      "id": 58,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Australia",
+      "target_country": "Germany",
+      "value_usd": 80000000000,
+      "year": 2025
+    },
+    {
+      "id": 59,
+      "commodity": "Wheat",
+      "source_country": "United States",
+      "target_country": "Japan",
+      "value_usd": 102000000000,
+      "year": 2025
+    },
+    {
+      "id": 60,
+      "commodity": "Cloud Services",
+      "source_country": "Australia",
+      "target_country": "Japan",
+      "value_usd": 57000000000,
+      "year": 2025
+    },
+    {
+      "id": 61,
+      "commodity": "Lithium",
+      "source_country": "Canada",
+      "target_country": "United States",
+      "value_usd": 14000000000,
+      "year": 2025
+    },
+    {
+      "id": 62,
+      "commodity": "Lithium",
+      "source_country": "Australia",
+      "target_country": "France",
+      "value_usd": 122000000000,
+      "year": 2025
+    },
+    {
+      "id": 63,
+      "commodity": "Automobiles",
+      "source_country": "Germany",
+      "target_country": "United States",
+      "value_usd": 29000000000,
+      "year": 2025
+    },
+    {
+      "id": 64,
+      "commodity": "Automobiles",
+      "source_country": "United Kingdom",
+      "target_country": "Canada",
+      "value_usd": 95000000000,
+      "year": 2025
+    },
+    {
+      "id": 65,
+      "commodity": "Semiconductors",
+      "source_country": "Canada",
+      "target_country": "United States",
+      "value_usd": 104000000000,
+      "year": 2025
+    },
+    {
+      "id": 66,
+      "commodity": "Iron Ore",
+      "source_country": "United Arab Emirates",
+      "target_country": "Germany",
+      "value_usd": 51000000000,
+      "year": 2025
+    },
+    {
+      "id": 67,
+      "commodity": "Automobiles",
+      "source_country": "Germany",
+      "target_country": "Singapore",
+      "value_usd": 20000000000,
+      "year": 2025
+    },
+    {
+      "id": 68,
+      "commodity": "Lithium",
+      "source_country": "Germany",
+      "target_country": "Australia",
+      "value_usd": 142000000000,
+      "year": 2025
+    },
+    {
+      "id": 69,
+      "commodity": "LNG",
+      "source_country": "United Arab Emirates",
+      "target_country": "India",
+      "value_usd": 32000000000,
+      "year": 2025
+    },
+    {
+      "id": 70,
+      "commodity": "Iron Ore",
+      "source_country": "United States",
+      "target_country": "Germany",
+      "value_usd": 97000000000,
+      "year": 2025
+    },
+    {
+      "id": 71,
+      "commodity": "Copper",
+      "source_country": "Germany",
+      "target_country": "Canada",
+      "value_usd": 38000000000,
+      "year": 2025
+    },
+    {
+      "id": 72,
+      "commodity": "Wheat",
+      "source_country": "United Arab Emirates",
+      "target_country": "Germany",
+      "value_usd": 104000000000,
+      "year": 2025
+    },
+    {
+      "id": 73,
+      "commodity": "LNG",
+      "source_country": "United States",
+      "target_country": "United Kingdom",
+      "value_usd": 11000000000,
+      "year": 2025
+    },
+    {
+      "id": 74,
+      "commodity": "Wheat",
+      "source_country": "India",
+      "target_country": "Canada",
+      "value_usd": 123000000000,
+      "year": 2025
+    },
+    {
+      "id": 75,
+      "commodity": "LNG",
+      "source_country": "Australia",
+      "target_country": "United Kingdom",
+      "value_usd": 133000000000,
+      "year": 2025
+    },
+    {
+      "id": 76,
+      "commodity": "LNG",
+      "source_country": "Canada",
+      "target_country": "France",
+      "value_usd": 83000000000,
+      "year": 2025
+    },
+    {
+      "id": 77,
+      "commodity": "Cloud Services",
+      "source_country": "South Korea",
+      "target_country": "France",
+      "value_usd": 78000000000,
+      "year": 2025
+    },
+    {
+      "id": 78,
+      "commodity": "Wheat",
+      "source_country": "Canada",
+      "target_country": "United Arab Emirates",
+      "value_usd": 132000000000,
+      "year": 2025
+    },
+    {
+      "id": 79,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Australia",
+      "target_country": "France",
+      "value_usd": 78000000000,
+      "year": 2025
+    },
+    {
+      "id": 80,
+      "commodity": "Crude Oil",
+      "source_country": "United States",
+      "target_country": "Australia",
+      "value_usd": 86000000000,
+      "year": 2025
+    },
+    {
+      "id": 81,
+      "commodity": "Semiconductors",
+      "source_country": "South Korea",
+      "target_country": "France",
+      "value_usd": 80000000000,
+      "year": 2025
+    },
+    {
+      "id": 82,
+      "commodity": "Cloud Services",
+      "source_country": "United Arab Emirates",
+      "target_country": "Australia",
+      "value_usd": 69000000000,
+      "year": 2025
+    },
+    {
+      "id": 83,
+      "commodity": "Cloud Services",
+      "source_country": "United Arab Emirates",
+      "target_country": "Japan",
+      "value_usd": 15000000000,
+      "year": 2025
+    },
+    {
+      "id": 84,
+      "commodity": "Cloud Services",
+      "source_country": "Australia",
+      "target_country": "United Kingdom",
+      "value_usd": 136000000000,
+      "year": 2025
+    },
+    {
+      "id": 85,
+      "commodity": "Semiconductors",
+      "source_country": "South Korea",
+      "target_country": "United Kingdom",
+      "value_usd": 64000000000,
+      "year": 2025
+    },
+    {
+      "id": 86,
+      "commodity": "Semiconductors",
+      "source_country": "United Arab Emirates",
+      "target_country": "United States",
+      "value_usd": 50000000000,
+      "year": 2025
+    },
+    {
+      "id": 87,
+      "commodity": "LNG",
+      "source_country": "Australia",
+      "target_country": "Canada",
+      "value_usd": 109000000000,
+      "year": 2025
+    },
+    {
+      "id": 88,
+      "commodity": "Wheat",
+      "source_country": "South Korea",
+      "target_country": "Japan",
+      "value_usd": 107000000000,
+      "year": 2025
+    },
+    {
+      "id": 89,
+      "commodity": "LNG",
+      "source_country": "United Arab Emirates",
+      "target_country": "Australia",
+      "value_usd": 17000000000,
+      "year": 2025
+    },
+    {
+      "id": 90,
+      "commodity": "Iron Ore",
+      "source_country": "Germany",
+      "target_country": "Japan",
+      "value_usd": 145000000000,
+      "year": 2025
+    },
+    {
+      "id": 91,
+      "commodity": "Automobiles",
+      "source_country": "France",
+      "target_country": "Australia",
+      "value_usd": 136000000000,
+      "year": 2025
+    },
+    {
+      "id": 92,
+      "commodity": "Wheat",
+      "source_country": "Canada",
+      "target_country": "United Kingdom",
+      "value_usd": 119000000000,
+      "year": 2025
+    },
+    {
+      "id": 93,
+      "commodity": "Lithium",
+      "source_country": "Canada",
+      "target_country": "United Arab Emirates",
+      "value_usd": 92000000000,
+      "year": 2025
+    },
+    {
+      "id": 94,
+      "commodity": "Copper",
+      "source_country": "United Arab Emirates",
+      "target_country": "Australia",
+      "value_usd": 51000000000,
+      "year": 2025
+    },
+    {
+      "id": 95,
+      "commodity": "Copper",
+      "source_country": "Singapore",
+      "target_country": "United Arab Emirates",
+      "value_usd": 78000000000,
+      "year": 2025
+    },
+    {
+      "id": 96,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Singapore",
+      "target_country": "Canada",
+      "value_usd": 55000000000,
+      "year": 2025
+    },
+    {
+      "id": 97,
+      "commodity": "Wheat",
+      "source_country": "Canada",
+      "target_country": "Germany",
+      "value_usd": 91000000000,
+      "year": 2025
+    },
+    {
+      "id": 98,
+      "commodity": "Crude Oil",
+      "source_country": "India",
+      "target_country": "Singapore",
+      "value_usd": 75000000000,
+      "year": 2025
+    },
+    {
+      "id": 99,
+      "commodity": "Automobiles",
+      "source_country": "United Arab Emirates",
+      "target_country": "India",
+      "value_usd": 141000000000,
+      "year": 2025
+    },
+    {
+      "id": 100,
+      "commodity": "Lithium",
+      "source_country": "South Korea",
+      "target_country": "Canada",
+      "value_usd": 39000000000,
+      "year": 2025
+    },
+    {
+      "id": 101,
+      "commodity": "Iron Ore",
+      "source_country": "United States",
+      "target_country": "South Korea",
+      "value_usd": 22000000000,
+      "year": 2025
+    },
+    {
+      "id": 102,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Australia",
+      "target_country": "India",
+      "value_usd": 67000000000,
+      "year": 2025
+    },
+    {
+      "id": 103,
+      "commodity": "Lithium",
+      "source_country": "Japan",
+      "target_country": "Singapore",
+      "value_usd": 139000000000,
+      "year": 2025
+    },
+    {
+      "id": 104,
+      "commodity": "Crude Oil",
+      "source_country": "Germany",
+      "target_country": "Singapore",
+      "value_usd": 37000000000,
+      "year": 2025
+    },
+    {
+      "id": 105,
+      "commodity": "Copper",
+      "source_country": "United Arab Emirates",
+      "target_country": "France",
+      "value_usd": 63000000000,
+      "year": 2025
+    },
+    {
+      "id": 106,
+      "commodity": "Copper",
+      "source_country": "United States",
+      "target_country": "France",
+      "value_usd": 59000000000,
+      "year": 2025
+    },
+    {
+      "id": 107,
+      "commodity": "Iron Ore",
+      "source_country": "United States",
+      "target_country": "Japan",
+      "value_usd": 107000000000,
+      "year": 2025
+    },
+    {
+      "id": 108,
+      "commodity": "LNG",
+      "source_country": "India",
+      "target_country": "Australia",
+      "value_usd": 27000000000,
+      "year": 2025
+    },
+    {
+      "id": 109,
+      "commodity": "Automobiles",
+      "source_country": "United States",
+      "target_country": "France",
+      "value_usd": 42000000000,
+      "year": 2025
+    },
+    {
+      "id": 110,
+      "commodity": "Copper",
+      "source_country": "France",
+      "target_country": "Australia",
+      "value_usd": 124000000000,
+      "year": 2025
+    },
+    {
+      "id": 111,
+      "commodity": "Semiconductors",
+      "source_country": "Singapore",
+      "target_country": "South Korea",
+      "value_usd": 75000000000,
+      "year": 2025
+    },
+    {
+      "id": 112,
+      "commodity": "Wheat",
+      "source_country": "United States",
+      "target_country": "India",
+      "value_usd": 61000000000,
+      "year": 2025
+    },
+    {
+      "id": 113,
+      "commodity": "Automobiles",
+      "source_country": "India",
+      "target_country": "United States",
+      "value_usd": 46000000000,
+      "year": 2025
+    },
+    {
+      "id": 114,
+      "commodity": "Pharmaceuticals",
+      "source_country": "United Kingdom",
+      "target_country": "United States",
+      "value_usd": 103000000000,
+      "year": 2025
+    },
+    {
+      "id": 115,
+      "commodity": "Semiconductors",
+      "source_country": "United Kingdom",
+      "target_country": "Canada",
+      "value_usd": 11000000000,
+      "year": 2025
+    },
+    {
+      "id": 116,
+      "commodity": "Iron Ore",
+      "source_country": "Singapore",
+      "target_country": "France",
+      "value_usd": 29000000000,
+      "year": 2025
+    },
+    {
+      "id": 117,
+      "commodity": "Wheat",
+      "source_country": "Singapore",
+      "target_country": "Germany",
+      "value_usd": 141000000000,
+      "year": 2025
+    },
+    {
+      "id": 118,
+      "commodity": "Pharmaceuticals",
+      "source_country": "Australia",
+      "target_country": "United Kingdom",
+      "value_usd": 131000000000,
+      "year": 2025
+    },
+    {
+      "id": 119,
+      "commodity": "Iron Ore",
+      "source_country": "Singapore",
+      "target_country": "Japan",
+      "value_usd": 30000000000,
+      "year": 2025
+    },
+    {
+      "id": 120,
+      "commodity": "LNG",
+      "source_country": "United Kingdom",
+      "target_country": "Germany",
+      "value_usd": 67000000000,
+      "year": 2025
+    }
+  ]
+}

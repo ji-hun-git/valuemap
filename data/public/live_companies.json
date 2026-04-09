@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "description": "Real listed companies with known HQ coordinates for live quote overlays",
+    "sources": [
+      "https://www.sec.gov/edgar/search/",
+      "https://companiesmarketcap.com/",
+      "https://query1.finance.yahoo.com/"
+    ]
+  },
+  "companies": [
+    {"symbol": "AAPL", "name": "Apple", "lat": 37.3349, "lon": -122.0090, "city": "Cupertino", "country": "United States"},
+    {"symbol": "MSFT", "name": "Microsoft", "lat": 47.6396, "lon": -122.1280, "city": "Redmond", "country": "United States"},
+    {"symbol": "NVDA", "name": "NVIDIA", "lat": 37.3875, "lon": -121.9630, "city": "Santa Clara", "country": "United States"},
+    {"symbol": "AMZN", "name": "Amazon", "lat": 47.6226, "lon": -122.3360, "city": "Seattle", "country": "United States"},
+    {"symbol": "GOOGL", "name": "Alphabet", "lat": 37.4220, "lon": -122.0841, "city": "Mountain View", "country": "United States"},
+    {"symbol": "META", "name": "Meta", "lat": 37.4848, "lon": -122.1484, "city": "Menlo Park", "country": "United States"},
+    {"symbol": "TSLA", "name": "Tesla", "lat": 30.2222, "lon": -97.6181, "city": "Austin", "country": "United States"},
+    {"symbol": "BRK-B", "name": "Berkshire Hathaway", "lat": 41.2565, "lon": -95.9345, "city": "Omaha", "country": "United States"},
+    {"symbol": "JPM", "name": "JPMorgan Chase", "lat": 40.7580, "lon": -73.9855, "city": "New York", "country": "United States"},
+    {"symbol": "V", "name": "Visa", "lat": 37.5630, "lon": -122.3255, "city": "San Francisco", "country": "United States"},
+    {"symbol": "TSM", "name": "TSMC", "lat": 24.8138, "lon": 120.9675, "city": "Hsinchu", "country": "Taiwan"},
+    {"symbol": "ASML", "name": "ASML", "lat": 51.4235, "lon": 5.4620, "city": "Veldhoven", "country": "Netherlands"},
+    {"symbol": "SAP", "name": "SAP", "lat": 49.2930, "lon": 8.6420, "city": "Walldorf", "country": "Germany"},
+    {"symbol": "SHEL", "name": "Shell", "lat": 51.5072, "lon": -0.1276, "city": "London", "country": "United Kingdom"},
+    {"symbol": "TM", "name": "Toyota", "lat": 35.0830, "lon": 137.1560, "city": "Toyota City", "country": "Japan"}
+  ]
+}

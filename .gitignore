@@ -1,0 +1,19 @@
+# Environments
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+
+# Local data artifacts
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
