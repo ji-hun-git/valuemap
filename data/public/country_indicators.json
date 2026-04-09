@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "description": "Country macro indicators for enriching company context",
+    "year": 2024,
+    "sources": [
+      "https://data.worldbank.org/",
+      "https://ourworldindata.org/",
+      "https://hdr.undp.org/data-center"
+    ]
+  },
+  "indicators": [
+    {"country": "United States", "gdp_usd_trillion": 28.8, "population_millions": 341.2, "hdi": 0.927},
+    {"country": "United Kingdom", "gdp_usd_trillion": 3.3, "population_millions": 68.5, "hdi": 0.940},
+    {"country": "Japan", "gdp_usd_trillion": 4.2, "population_millions": 123.3, "hdi": 0.925},
+    {"country": "Germany", "gdp_usd_trillion": 4.6, "population_millions": 84.4, "hdi": 0.950},
+    {"country": "France", "gdp_usd_trillion": 3.1, "population_millions": 68.4, "hdi": 0.910},
+    {"country": "India", "gdp_usd_trillion": 3.9, "population_millions": 1428.6, "hdi": 0.644},
+    {"country": "Singapore", "gdp_usd_trillion": 0.5, "population_millions": 6.0, "hdi": 0.949},
+    {"country": "Canada", "gdp_usd_trillion": 2.2, "population_millions": 41.4, "hdi": 0.936},
+    {"country": "South Korea", "gdp_usd_trillion": 1.9, "population_millions": 51.7, "hdi": 0.929},
+    {"country": "Australia", "gdp_usd_trillion": 1.8, "population_millions": 27.1, "hdi": 0.951},
+    {"country": "United Arab Emirates", "gdp_usd_trillion": 0.5, "population_millions": 10.2, "hdi": 0.937}
+  ]
+}

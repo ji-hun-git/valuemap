@@ -1,0 +1,19 @@
+{
+  "companies": [
+    {"name": "CompaniesMarketCap", "url": "https://companiesmarketcap.com/", "license": "Public website data (verify ToS)"},
+    {"name": "SEC EDGAR", "url": "https://www.sec.gov/edgar/search/", "license": "US public filing data"},
+    {"name": "OpenCorporates", "url": "https://opencorporates.com/", "license": "Open data/API plans"}
+  ],
+  "trade_flows": [
+    {"name": "UN Comtrade", "url": "https://comtradeplus.un.org/", "license": "UN data usage terms"},
+    {"name": "World Bank Data", "url": "https://data.worldbank.org/", "license": "CC BY 4.0"}
+  ],
+  "mobility": [
+    {"name": "OpenSky Network", "url": "https://opensky-network.org/", "license": "Open aviation data"},
+    {"name": "Global Fishing Watch", "url": "https://globalfishingwatch.org/", "license": "Open map layers"}
+  ],
+  "geospatial": [
+    {"name": "Natural Earth", "url": "https://www.naturalearthdata.com/", "license": "Public domain"},
+    {"name": "OpenStreetMap", "url": "https://www.openstreetmap.org/", "license": "ODbL"}
+  ]
+}
