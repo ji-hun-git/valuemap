@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "description": "Country centroid coordinates for flow arc rendering",
+    "sources": ["https://www.naturalearthdata.com/", "https://www.geonames.org/"]
+  },
+  "centroids": {
+    "United States": {"lat": 39.8283, "lon": -98.5795},
+    "Canada": {"lat": 56.1304, "lon": -106.3468},
+    "United Kingdom": {"lat": 55.3781, "lon": -3.4360},
+    "Germany": {"lat": 51.1657, "lon": 10.4515},
+    "France": {"lat": 46.2276, "lon": 2.2137},
+    "India": {"lat": 20.5937, "lon": 78.9629},
+    "Japan": {"lat": 36.2048, "lon": 138.2529},
+    "Singapore": {"lat": 1.3521, "lon": 103.8198},
+    "South Korea": {"lat": 35.9078, "lon": 127.7669},
+    "Australia": {"lat": -25.2744, "lon": 133.7751},
+    "United Arab Emirates": {"lat": 23.4241, "lon": 53.8478},
+    "Taiwan": {"lat": 23.6978, "lon": 120.9605},
+    "Netherlands": {"lat": 52.1326, "lon": 5.2913}
+  }
+}
