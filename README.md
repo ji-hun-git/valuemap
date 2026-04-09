@@ -1,19 +1,21 @@
 # 🌍 Atlas of Value
 
-Atlas of Value is an interactive macro-intelligence platform that visualizes global corporate wealth, live mobility, and cross-border value flows on a 3D Earth interface.
+Atlas of Value is a company-level geospatial intelligence platform that transforms global macro/market data into an interactive economic command center.
 
-## What was fixed in this pass
+## What is now implemented
 
-- **Earth map visibility fix:** CSP/security headers now allow Cesium CDN assets so globe rendering works in-browser.
-- **Realtime stock visibility:** dedicated live stocks table fed by `GET /api/v1/live/companies`.
-- **Data discoverability:** added `GET /api/v1/data/catalog` + `GET /api/v1/data/{dataset}` so all datasets are directly browsable via API.
-- **Live value map arcs + AOE index:** flows are shown as globe arcs with active pulse metrics.
-- **AI Copilot interaction:** natural-language prompts can trigger map focus actions.
+- **Scaled company dataset:** 180 company records with market cap, revenue, workforce, sector, and geolocation metadata.
+- **Connected open-source context data:** country macro indicators + source catalog for auditability.
+- **Backend API for company intelligence:** rich filtering, sorting, pagination, detail lookup, and analytics aggregations.
+- **Large trade-flow API:** 120 routes plus route analytics/corridors and source metadata endpoints.
+- **Beautiful web UI/UX:** glassmorphism dashboard with KPI cards, sector visualization, country context, source panel, dynamic search suggestions, and paginated directory.
+- **Safety baseline:** in-memory rate limiting, secure response headers, typed input validation, privacy + security docs.
 
-## APIs
+## API surface
 
 ### Companies
 - `GET /api/v1/companies`
+  - Query params: `q`, `sector`, `country`, `min_market_cap`, `max_market_cap`, `sort_by`, `sort_dir`, `page`, `page_size`
 - `GET /api/v1/companies/{symbol}`
 - `GET /api/v1/companies/search/suggestions`
 - `GET /api/v1/companies/country-context`
@@ -23,21 +25,14 @@ Atlas of Value is an interactive macro-intelligence platform that visualizes glo
 
 ### Trade Flows
 - `GET /api/v1/trade-flows`
+  - Query params: `commodity`, `source_country`, `target_country`, `min_value_usd`, `limit`
 - `GET /api/v1/trade-flows/analytics/top-routes`
 - `GET /api/v1/trade-flows/analytics/corridors`
-- `GET /api/v1/trade-flows/map/arcs`
 - `GET /api/v1/trade-flows/sources`
 
-### Realtime + AI
-- `GET /api/v1/live/companies`
-- `GET /api/v1/live/aircraft`
-- `GET /api/v1/live/value-flows`
-- `WS /api/v1/live/ws`
-- `POST /api/v1/ai/ask`
-
-### Data Catalog
-- `GET /api/v1/data/catalog`
-- `GET /api/v1/data/{dataset_name}`
+### Health + Web
+- `GET /health`
+- `GET /` (launches the dashboard)
 
 ## Launch locally
 
@@ -48,21 +43,18 @@ pip install -r requirements.txt
 uvicorn backend.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000`.
+Then open: `http://127.0.0.1:8000`
 
-## Connected data
-
-- Yahoo Finance quote endpoint (+ Stooq fallback for quote coverage)
-- OpenSky Network ADS-B
-- UN Comtrade+
-- World Bank Data
-- SEC EDGAR
-- CompaniesMarketCap
-- OpenCorporates
-- Natural Earth / GeoNames / OpenStreetMap references
-
-## Governance
+## Governance / Trust
 
 - `LICENSE` (MIT)
-- `PRIVACY.md`
-- `SECURITY.md`
+- `PRIVACY.md` (development privacy notice)
+- `SECURITY.md` (security and safety posture)
+
+## Data notes
+
+- `data/public/wealth_nodes.json`: scaled demo dataset for company-level product development.
+- `data/public/trade_flows.json`: scaled trade-flow dataset for analytics and flow UX testing.
+- `data/public/country_indicators.json`: open macro context indicators.
+- `data/public/data_sources.json`: connected public/open-source data catalog.
+- Datasets are development-safe demo records intended for rapid prototyping and UX iteration.
